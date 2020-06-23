@@ -57,10 +57,18 @@ medical VARCHAR,type VARCHAR,rating FLOAT,flavor VARCHAR);
 #         )
 
 # connection.commit()
+connection.close()
 
 home_routes = Blueprint("home_routes", __name__)
 
 def fetch_strains(query):
+    # Creating connection object inside function to sustain connection
+    # until session end
+    connection = psycopg2.connect(
+                                  dbname=DB_NAME,
+                                  user=DB_USER,
+                                  password=DB_PASSWORD,
+                                  host=DB_HOST)
     # Execute query
     cursor.execute(query)
     # Query results
