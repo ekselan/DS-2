@@ -8,7 +8,9 @@ from dotenv import load_dotenv
 import psycopg2
 import pandas 
 
-load_dotenv() #> loads contents of the .env file into the script's environment
+ENV_PATH = os.path.join(os.getcwd(), '.env')
+load_dotenv(ENV_PATH) #> loads contents of the .env file into the script's environment
+
 
 DB_NAME = os.getenv("DB_NAME")
 DB_USER = os.getenv("DB_USER")
