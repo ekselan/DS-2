@@ -5,17 +5,17 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from flask import Blueprint
 
 ### Instantiate new blueprint object
-model_routes = Blueprint("model_routes", __name__)
+# model_routes = Blueprint("model_routes", __name__)
 
 
 ### Pickled model filepath
 MODEL_FILEPATH = "/Users/ekselan/Desktop/Med_Cab_BW/DS-2/data/medcab_model2.pkl"
 
 ### Filepath for .csv dataset
-DATA_FILEPATH = "/Users/ekselan/Desktop/Med_Cab_BW/DS-2/data/BW_MedCab_Dataset_With_Index.csv"
+DATA_URL = "https://raw.githubusercontent.com/BW-Med-Cab-2/DS/master/data/BW_MedCab_Dataset_With_Index.csv"
 
 ### Create df for model to reference for strain info
-df = pd.read_csv(DATA_FILEPATH)
+df = pd.read_csv(DATA_URL)
 df = df.drop('Unnamed: 0', axis=1)
 # print(df.shape)
 # print(df.head())
@@ -66,9 +66,10 @@ def hello_pickle(nn):
     # Possibly grab top 5, loop them and grab their info    
     return "Your Recommended Strain:", info
 
-@model_routes.route("/model")
+# @model_routes.route("/model")
 def run_model():
 
     recommender = load_model()
 
     return hello_pickle(recommender)
+
