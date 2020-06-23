@@ -25,9 +25,9 @@ DB_HOST="___________"
 ## Running the app locally using Flask  
 **In a terminal:**  
 Mac/Linux:  
-`FLASK_APP=salty_app flask run`  
+`FLASK_APP=MedCab flask run`  
 Windows:  
-`export FLASK_APP=salty_app` (set env var)  
+`export FLASK_APP=MedCab` (set env var)  
 `flask run`
 
 ## Heroku App: https://med-cab-1415.herokuapp.com/
