@@ -36,16 +36,16 @@ print("CURSOR:", cursor)
 # in case duplicate app objects were conflicting
 
 
-@app.route("/")
-def index():
-    return "Hello, we're here to help."
+# @app.route("/")
+# def index():
+#     return "Hello, we're here to help."
 
 
-@app.route("/strains")
-def strains():
-    return "This will list the strains"
+# @app.route("/strains")
+# def strains():
+#     return "This will list the strains"
 
 
-@app.route("/recx")
-def recommendations():
-    return "This will list recommendations"
+# @app.route("/recx")
+# def recommendations():
+#     return "This will list recommendations"
