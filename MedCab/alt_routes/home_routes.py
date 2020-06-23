@@ -7,11 +7,12 @@ import os
 from dotenv import load_dotenv
 import psycopg2
 import pandas
+import csv
 
-ENV_PATH = os.path.join(os.getcwd(), '.env')
+# ENV_PATH = os.path.join(os.getcwd(), '.env')
 # > loads contents of the .env file into the script's environment
-load_dotenv(ENV_PATH)
-
+# load_dotenv(ENV_PATH)
+load_dotenv()
 
 DB_NAME = os.getenv("DB_NAME")
 DB_USER = os.getenv("DB_USER")
@@ -30,14 +31,32 @@ print("CONNECTION:", connection)
 cursor = connection.cursor()
 print("CURSOR:", cursor)
 
-# cursor.execute('SELECT * from test_table;')
-# result = cursor.fetchall()
-# print("RESULT:", type(result))
-# print(result)
 
-# app = Flask(__name__)
+'''
+Create Table called medcab !
+'''
+create = '''
+CREATE TABLE medcab(strain VARCHAR,id INT,flavors VARCHAR,
+medical VARCHAR,type VARCHAR,rating FLOAT, flavor VARCHAR);
+'''
+query = create
+# cursor.execute(query)
 
-# Instantiate new blueprint object
+# connection.commit()
+
+'''
+Fill in table:
+'''
+with open('BW_MedCab_Dataset.csv', 'r') as f:
+    reader = csv.reader(f)
+    next(reader)
+    for row in reader:
+        cursor.execute(
+            "INSERT INTO medcab VALUES (%s, %d, %s, %s, %s, %f, %s)", row
+        )
+
+connection.commit()
+
 home_routes = Blueprint("home_routes", __name__)
 
 
