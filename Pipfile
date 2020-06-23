@@ -15,6 +15,7 @@ flask-sqlalchemy = "*"
 flask-migrate = "*"
 scikit-learn = "*"
 gunicorn = "*"
+flask-cors = "*"
 
 [requires]
 python_version = "3.8"
