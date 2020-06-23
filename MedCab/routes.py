@@ -28,7 +28,8 @@ print("CURSOR:", cursor)
 # print("RESULT:", type(result))
 # print(result)
 
-app = Flask(__name__)
+# app = Flask(__name__) #> Turned off in testing
+# in case duplicate app objects were conflicting
 
 @app.route("/")
 def index():
