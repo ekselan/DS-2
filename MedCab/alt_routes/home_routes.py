@@ -36,13 +36,13 @@ print("CURSOR:", cursor)
 Create Table called medcab !
 '''
 create = '''
-CREATE TABLE medcab(strain VARCHAR,id INT,flavors VARCHAR,
-medical VARCHAR,type VARCHAR,rating FLOAT, flavor VARCHAR);
+CREATE TABLE medcab(strain VARCHAR,id INT,flavors VARCHAR,effects VARCHAR,
+medical VARCHAR,type VARCHAR,rating FLOAT,flavor VARCHAR);
 '''
-query = create
+# query = create
 # cursor.execute(query)
 
-# connection.commit()
+connection.commit()
 
 '''
 Fill in table:
@@ -52,7 +52,7 @@ with open('BW_MedCab_Dataset.csv', 'r') as f:
     next(reader)
     for row in reader:
         cursor.execute(
-            "INSERT INTO medcab VALUES (%s, %d, %s, %s, %s, %f, %s)", row
+            "INSERT INTO medcab VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", row
         )
 
 connection.commit()
