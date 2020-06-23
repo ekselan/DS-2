@@ -57,7 +57,7 @@ medical VARCHAR,type VARCHAR,rating FLOAT,flavor VARCHAR);
 #         )
 
 # connection.commit()
-connection.close()
+
 
 home_routes = Blueprint("home_routes", __name__)
 
