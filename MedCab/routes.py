@@ -27,6 +27,9 @@ print("CONNECTION:", connection)
 cursor = connection.cursor()
 print("CURSOR:", cursor)
 
+# Close connection
+connection.close()
+
 # cursor.execute('SELECT * from test_table;')
 # result = cursor.fetchall()
 # print("RESULT:", type(result))
