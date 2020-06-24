@@ -10,7 +10,7 @@ def create_app():
     app = Flask(__name__)
     cors = CORS(app)
     app.register_blueprint(home_routes)
-    #app.register_blueprint(model_routes)
+    app.register_blueprint(model_routes)
     return app
 
 

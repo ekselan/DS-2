@@ -7,7 +7,7 @@ from flask import Blueprint
 ### Instantiate new blueprint object
 #model_routes = Blueprint("model_routes", __name__)
 
-
+load_dotenv()
 ### Pickled model filepath
 MODEL_FILEPATH = "/Users/ekselan/Desktop/Med_Cab_BW/DS-2/data/medcab_model2.pkl"
 

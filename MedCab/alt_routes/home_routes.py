@@ -112,3 +112,8 @@ def strains():
 @home_routes.route("/recx")
 def recommendations():
     return "This will list recommendations."
+
+@home_routes.route("/data")
+def data():
+    query= '''
+    SELECT 
