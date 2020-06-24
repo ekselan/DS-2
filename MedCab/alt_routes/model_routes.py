@@ -19,7 +19,9 @@ model_routes = Blueprint("model_routes", __name__)
 
 
 ### Pickled model filepath
-MODEL_FILEPATH = "/Users/ekselan/Desktop/Med_Cab_BW/DS-2/data/medcab_model2.pkl"
+# MODEL_FILEPATH = "/Users/ekselan/Desktop/Med_Cab_BW/DS-2/data/medcab_model2.pkl"
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "medcab_model2_copy.pkl")
+
 
 # ### Filepath for .csv dataset
 # DATA_URL = "https://raw.githubusercontent.com/BW-Med-Cab-2/DS/master/data/BW_MedCab_Dataset_With_Index.csv"
@@ -75,7 +77,7 @@ pairs = df.to_json(orient='records')
 def load_model():
     """Function to load pickled nearest neighbors model"""
     # print("LOADING THE MODEL...")
-    with open(MODEL_FILEPATH, "rb") as model_file:
+    with open(MODEL_PATH, "rb") as model_file:
         saved_model = pickle.load(model_file)
     return saved_model
 
