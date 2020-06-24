@@ -8,6 +8,7 @@ import csv
 import pandas as pd
 
 
+
 # ENV_PATH = os.path.join(os.getcwd(), '.env')
 # > loads contents of the .env file into the script's environment
 # load_dotenv(ENV_PATH)
@@ -110,4 +111,4 @@ def strains():
 
 @home_routes.route("/recx")
 def recommendations():
-    return "This will list recommendations"
+    return "This will list recommendations."

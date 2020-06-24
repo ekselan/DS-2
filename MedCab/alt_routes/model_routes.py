@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from flask import Blueprint
 
 ### Instantiate new blueprint object
-# model_routes = Blueprint("model_routes", __name__)
+#model_routes = Blueprint("model_routes", __name__)
 
 
 ### Pickled model filepath
