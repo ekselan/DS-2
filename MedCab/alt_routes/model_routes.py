@@ -100,7 +100,7 @@ def hello_pickle(nn):
     dtm = tfidf.fit_transform(data) #> Similar to fit_predict
 
     # Get user provided string, currently have placeholder string for example
-    x = "Aches, pain, insomnia, fatigue" #> this will take-in input from a route 
+    x = "Loss of appetite, anxiety" #> this will take-in input from a route 
 
     # Query for symptoms
     new = tfidf.transform([x])  
