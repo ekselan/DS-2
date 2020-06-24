@@ -20,26 +20,30 @@ DB_HOST = os.getenv("DB_HOST")
 
 print(DB_NAME, DB_USER, DB_PASSWORD, DB_HOST)
 
-connection = psycopg2.connect(
-    dbname=DB_NAME,
-    user=DB_USER,
-    password=DB_PASSWORD,
-    host=DB_HOST)
-print("CONNECTION:", connection)
+# connection = psycopg2.connect(
+#     dbname=DB_NAME,
+#     user=DB_USER,
+#     password=DB_PASSWORD,
+#     host=DB_HOST)
+# print("CONNECTION:", connection)
 
-cursor = connection.cursor()
-print("CURSOR:", cursor)
-
-
+# cursor = connection.cursor()
+# print("CURSOR:", cursor)
 
 
-'''
-Create Table called medcab !
-'''
-create = '''
-CREATE TABLE medcab(strain VARCHAR,id INT,flavors VARCHAR,effects VARCHAR,
-medical VARCHAR,type VARCHAR,rating FLOAT,flavor VARCHAR);
-'''
+# '''
+# Create Table called medcab !
+# '''
+# create = '''
+# CREATE TABLE medcab(strain VARCHAR,id INT,flavors VARCHAR,effects VARCHAR,
+# medical VARCHAR,type VARCHAR,rating FLOAT,flavor VARCHAR);
+# '''
+
+
+### |^|^|^| Commented out section above to try and reduce num of connections |^|^|^|
+ 
+
+
 # query = create
 # cursor.execute(query)
 

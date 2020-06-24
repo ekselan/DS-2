@@ -133,5 +133,4 @@ dmypy.json
 **/.DS_Store
 *.DS_Store
 
-MedCab/alt_routes/model_routes.py
-MedCab/alt_routes/model_routes.py
+

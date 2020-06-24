@@ -40,6 +40,16 @@ https://med-cab-1415.herokuapp.com/strains
 https://med-cab-1415.herokuapp.com/recx
 ```
 
+## Heroku App II: https://greensolx2.herokuapp.com/
+
+Endpoints if deployed to Heroku:  
+Below are the routes that return key-value pair data in JSON from a postgreSQL database. 
+```sh
+https://greensolx2.herokuapp.com/
+https://greensolx2.herokuapp.com/strains
+https://greensolx2.herokuapp.com/recx
+```
+
 ## Heroku Deployment
 - Add "Procfile" (case-sensitive) with following content:
 ```sh
