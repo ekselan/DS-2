@@ -40,8 +40,7 @@ print(DB_NAME, DB_USER, DB_PASSWORD, DB_HOST)
 # '''
 
 
-### |^|^|^| Commented out section above to try and reduce num of connections |^|^|^|
- 
+# |^|^|^| Commented out section above to try and reduce num of connections |^|^|^|
 
 
 # query = create
@@ -65,16 +64,17 @@ print(DB_NAME, DB_USER, DB_PASSWORD, DB_HOST)
 
 home_routes = Blueprint("home_routes", __name__)
 
+
 def fetch_strains(query):
     # Creating connection object inside function to sustain connection
     # until session end
     connection = psycopg2.connect(
-                                  dbname=DB_NAME,
-                                  user=DB_USER,
-                                  password=DB_PASSWORD,
-                                  host=DB_HOST)
+        dbname=DB_NAME,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        host=DB_HOST)
     cursor = connection.cursor()
-    
+
     # Execute query
     cursor.execute(query)
     # Query results
@@ -86,13 +86,14 @@ def fetch_strains(query):
     # List of tuples to DF
     df = pd.DataFrame(strains, columns=columns)
     print(type(df))
-    
+
     # DF to dictionary
     pairs = df.to_json(orient='records')
     print(type(pairs))
     # Closing Connection
     connection.close()
     return pairs
+
 
 @home_routes.route("/")
 def index():
@@ -102,7 +103,7 @@ def index():
 @home_routes.route("/strains")
 def strains():
     query = '''
-    SELECT id, strain, rating 
+    SELECT id, strain, rating
     FROM medcab
     '''
     return fetch_strains(query)

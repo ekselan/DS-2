@@ -15,6 +15,7 @@ df = df.drop('Unnamed: 0', axis=1)
 # print(df.shape)
 # print(df.head())
 
+
 def load_model():
     """Function to load pickled nearest neighbors model"""
     # print("LOADING THE MODEL...")
@@ -22,42 +23,44 @@ def load_model():
         saved_model = pickle.load(model_file)
     return saved_model
 
+
 def hello_pickle(nn):
     """
     Function to use pickled model to get nearest neighbor recommendation
     nn = pickled model
     """
-    nn = nn 
+    nn = nn
 
     # List of text documents
     data = list(df['medical'])
 
     # create the transformer
     tfidf = TfidfVectorizer(max_df=.95,
-                        min_df=2,
-                        ngram_range=(1,3),
-                        max_features=5000)
+                            min_df=2,
+                            ngram_range=(1, 3),
+                            max_features=5000)
 
     # build vocab
-    dtm = tfidf.fit_transform(data) #> Similar to fit_predict
+    dtm = tfidf.fit_transform(data)  # > Similar to fit_predict
 
     # Get user provided string
-    x = input() #> this will take-in input from a route 
+    x = input()  # > this will take-in input from a route
 
     # Query for symptoms
-    new = tfidf.transform([x])  
+    new = tfidf.transform([x])
 
     # Run model
-    result = nn.kneighbors(new.todense())   
+    result = nn.kneighbors(new.todense())
 
     # Get index location of recommended strain
-    num = result[1][0][0]   
+    num = result[1][0][0]
 
     # Include all details of strain except Flavor, tokens, data
-    info = df.iloc[num][:7] #> could swap this to database query 
+    info = df.iloc[num][:7]  # > could swap this to database query
 
-    # Possibly grab top 5, loop them and grab their info    
+    # Possibly grab top 5, loop them and grab their info
     return "Your Recommended Strain:", info
+
 
 if __name__ == "__main__":
 

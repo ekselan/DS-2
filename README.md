@@ -38,6 +38,7 @@ Below are the routes that return key-value pair data in JSON from a postgreSQL d
 https://med-cab-1415.herokuapp.com/
 https://med-cab-1415.herokuapp.com/strains
 https://med-cab-1415.herokuapp.com/recx
+https://med-cab-1415.herokuapp.com/model
 ```
 
 ## Heroku App II: https://greensolx2.herokuapp.com/
