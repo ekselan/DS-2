@@ -1,6 +1,11 @@
 # DS
 Data Science repository for BW-Med-Cab-2. Includes API calls and interaction instructions. Also includes steps to re-create API locally, including dependency installations.
 
+<!-- TODO: What is this repo/app about? What does it do? Who is it for? 
+
+TODO: What data does it use? Links? 
+
+TODO: What is the Strain Recommender Tool / how does it work? What do the "recommendations" tell me? -->
 ---
 
 ## Heroku App: https://med-cab-1415.herokuapp.com/
@@ -61,7 +66,7 @@ https://greensolx2.herokuapp.com/toptenflavor
         - ***Schema:*** 
         ```
         --strain        (strain name, string)
-        --id            (strain id, string)
+        --id            (strain id, int)
         --flavors       (flavors, string)
         --effects       (positive effects, string)
         --medical       (medical effects, string)
