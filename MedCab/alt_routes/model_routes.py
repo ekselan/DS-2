@@ -122,7 +122,7 @@ def hello_pickle(nn):
     return summary
 
 
-@model_routes.route("/model", methods=["GET", "POST"])
+@model_routes.route("/model")
 def run_model():
 
     recommender = load_model()
@@ -131,6 +131,54 @@ def run_model():
     res = result[0].to_json()
     return res
 
+
+"""TODO: Add dynamic route for model_routes"""
+
+"""Tweak hello_pickle function for use with input variable"""
+def hello_recommender(nn, x):
+    """
+    Function to use pickled model to get nearest neighbor recommendation
+    nn = pickled model
+    x = input string
+    """
+    nn = nn
+    x = x
+
+    # List of text documents
+    data = list(df['medical'])
+
+    # create the transformer
+    tfidf = TfidfVectorizer(max_df=.95,
+                            min_df=2,
+                            ngram_range=(1, 3),
+                            max_features=5000)
+
+    # build vocab
+    dtm = tfidf.fit_transform(data)  # > Similar to fit_predict
+
+    # Query for symptoms
+    new = tfidf.transform([x])
+
+    # Run model
+    result = nn.kneighbors(new.todense())
+
+    # For loop to grab top 5 recommendations
+    summary = []
+    for r in result[1][0]:
+        info = df.iloc[r][:7]
+        summary.append(info)
+
+    # Possibly grab top 5, loop them and grab their info
+    return summary
+
+@model_routes.route("/model/<symptoms_string>")
+def make_rec(symptoms_string=None):
+    x = symptoms_string
+
+    recommender = load_model()
+    result = hello_recommender(recommender, x)
+    res = result[0].to_json()
+    return res
 
 # Closing Connection
 connection.close()
