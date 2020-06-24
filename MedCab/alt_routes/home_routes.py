@@ -73,6 +73,8 @@ def fetch_strains(query):
                                   user=DB_USER,
                                   password=DB_PASSWORD,
                                   host=DB_HOST)
+    cursor = connection.cursor()
+    
     # Execute query
     cursor.execute(query)
     # Query results
