@@ -132,7 +132,7 @@ def run_model():
     return res
 
 
-"""TODO: Add dynamic route for model_routes"""
+""" Add dynamic route for model_routes"""
 
 """Tweak hello_pickle function for use with input variable"""
 def hello_recommender(nn, x):
