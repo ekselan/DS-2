@@ -130,4 +130,7 @@ def run_model():
     # Turn Series into json
     res = result[0].to_json()
     return res
+
+
+# Closing Connection
 connection.close()
