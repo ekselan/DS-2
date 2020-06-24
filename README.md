@@ -1,9 +1,106 @@
 # DS
+Data Science repository for BW-Med-Cab-2. Includes API calls and interaction instructions. Also includes steps to re-create API locally, including dependency installations.
+
+---
+
+## Heroku App: https://med-cab-1415.herokuapp.com/
+
+Endpoints if deployed to Heroku:  
+Below are the routes that return key-value pair data in JSON from a postgreSQL database. 
+```sh
+https://med-cab-1415.herokuapp.com/
+https://med-cab-1415.herokuapp.com/strains
+https://med-cab-1415.herokuapp.com/recx
+https://med-cab-1415.herokuapp.com/model
+https://med-cab-1415.herokuapp.com/model/<symptoms_string>
+https://med-cab-1415.herokuapp.com/data
+https://med-cab-1415.herokuapp.com/toptenrating
+https://med-cab-1415.herokuapp.com/toptenflavor
+```
+
+## Heroku App II: https://greensolx2.herokuapp.com/
+
+Endpoints if deployed to Heroku:  
+Below are the routes that return key-value pair data in JSON from a postgreSQL database. 
+```sh
+https://greensolx2.herokuapp.com/
+https://greensolx2.herokuapp.com/strains
+https://greensolx2.herokuapp.com/recx
+https://greensolx2.herokuapp.com/model
+https://greensolx2.herokuapp.com/model/<symptoms_string>
+https://greensolx2.herokuapp.com/data
+https://greensolx2.herokuapp.com/toptenrating
+https://greensolx2.herokuapp.com/toptenflavor
+```
+
+***Note on dual APIs:*** Both APIs provide same functionality, use same model, and can be used interchangeably. Presence of both is for development and production workflow, as well as back up API.
+
+---
+
+## Heroku API
+- **Strain Recommender Tool**
+    - **To get strain recommendations**, type/insert a "symptoms string" into:
+        - https://med-cab-1415.herokuapp.com/model/<symptoms_string> 
+        - or: 
+        - https://greensolx2.herokuapp.com/model/<symptoms_string>
+        - **Replace <symptoms_string> with ailments/symptoms**
+    - **Examples:**
+        - ***Single Entry:***
+        ```
+        https://med-cab-1415.herokuapp.com/model/insomnia
+        ```
+        - ***Two Inputs:*** (can type in commas and spaces)
+        ```
+        https://med-cab-1415.herokuapp.com/model/insomnia, anxiety
+        ```
+        - ***Multi-Input:***
+        ```
+        https://med-cab-1415.herokuapp.com/model/insomnia, anxiety, fatigue, spasms, muscle pain
+        ```
+    - **Output** (json key value pairs)
+        - ***Schema:*** 
+        ```
+        --strain        (strain name, string)
+        --id            (strain id, string)
+        --flavors       (flavors, string)
+        --effects       (positive effects, string)
+        --medical       (medical effects, string)
+        --type          (indica, hybrid or sativa, string)
+        --rating        (up to 5 stars, float)
+        ```
+        - ***Example:***
+        ```
+        {"strain":"Crystal Gayle","id":634,"flavors":"Earthy, Diesel, Skunk","effects":"Hungry, Euphoric, Happy, Creative, Focused","medical":"Muscle Spasms","type":"hybrid","rating":4.4}
+        ```
+- **Routes for data grabs / queries:**
+    - ***View all strains in database***
+    ```
+    https://med-cab-1415.herokuapp.com/strains
+    ```
+        - Returns strain id, name, and rating
+    - ***View all data in database***
+    ```
+    https://med-cab-1415.herokuapp.com/data
+    ```
+        - Returns strain name, id, flavors, effects, medical, type, rating, flavor
+    - ***View top ten highest rated strains***
+    ```
+    https://med-cab-1415.herokuapp.com/toptenrating
+    ```
+        - Returns strain names, sorted in descending order, filtered by star rating and length of "medical" description
+    - ***View top ten "most flavorful" strains***
+    ```
+    https://med-cab-1415.herokuapp.com/toptenflavor
+    ```
+        - Returns strain names, sorted in descending order, filtered by length of "flavors" description
+---
 
 ## Resources
 - Postgres Database
 - Flask
 - Heroku  
+
+---
 
 ## Installation Instructions for Dependencies (pipenv, Mac/Linux)
 
@@ -30,26 +127,7 @@ Windows:
 `export FLASK_APP=MedCab` (set env var)  
 `flask run`
 
-## Heroku App: https://med-cab-1415.herokuapp.com/
-
-Endpoints if deployed to Heroku:  
-Below are the routes that return key-value pair data in JSON from a postgreSQL database. 
-```sh
-https://med-cab-1415.herokuapp.com/
-https://med-cab-1415.herokuapp.com/strains
-https://med-cab-1415.herokuapp.com/recx
-https://med-cab-1415.herokuapp.com/model
-```
-
-## Heroku App II: https://greensolx2.herokuapp.com/
-
-Endpoints if deployed to Heroku:  
-Below are the routes that return key-value pair data in JSON from a postgreSQL database. 
-```sh
-https://greensolx2.herokuapp.com/
-https://greensolx2.herokuapp.com/strains
-https://greensolx2.herokuapp.com/recx
-```
+---
 
 ## Heroku Deployment
 - Add "Procfile" (case-sensitive) with following content:
