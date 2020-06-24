@@ -50,7 +50,7 @@ https://greensolx2.herokuapp.com/toptenflavor
 
 ---
 
-## Heroku API
+## MedCab API
 - **Strain Recommender Tool**
     - **To get strain recommendations**, type/insert a "symptoms string" into:
         - https://med-cab-1415.herokuapp.com/model/<symptoms_string> 
