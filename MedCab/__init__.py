@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 
 
-from MedCab.alt_routes.home_routes import home_routes, connection, cursor
+from MedCab.alt_routes.home_routes import home_routes
 
 
 def create_app():
