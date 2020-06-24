@@ -2,7 +2,7 @@ import pickle
 import pandas as pd
 import sklearn
 from sklearn.feature_extraction.text import TfidfVectorizer
-from flask import Blueprint
+from flask import Blueprint, jsonify
 import os
 from dotenv import load_dotenv
 import psycopg2
@@ -51,8 +51,8 @@ cursor.execute(query)
 # Query results
 strains = list(cursor.fetchall())
 # Key-value pair names for df columns
-columns = ["id",
-            "strain",
+columns = ["strain",
+            "id",
             "flavors",
             "effects",
             "medical",
@@ -106,23 +106,25 @@ def hello_pickle(nn):
     new = tfidf.transform([x])  
 
     # Run model
-    result = nn.kneighbors(new.todense())   
+    result = nn.kneighbors(new.todense())     
 
-    # Get index location of recommended strain
-    num = result[1][0][0]   
-
-    # Include all details of strain except Flavor, tokens, data
-    info = df.iloc[num][:7] #> could swap this to database query 
+    # For loop to grab top 5 recommendations
+    summary = []
+    for r in result[1][0]:
+        info = df.iloc[r][:7]
+        summary.append(info)
 
     # Possibly grab top 5, loop them and grab their info    
-    return "Your Recommended Strain:", info
+    return summary
 
-@model_routes.route("/model")
+@model_routes.route("/model", methods=["GET", "POST"])
 def run_model():
 
     recommender = load_model()
-
-    return "hello_pickle(recommender)"
+    result = hello_pickle(recommender)
+    # Turn Series into json
+    res = result[0].to_json()
+    return res
 
 # Closing Connection
 connection.close()
