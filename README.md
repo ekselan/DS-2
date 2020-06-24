@@ -1,6 +1,19 @@
 # DS
 Data Science repository for BW-Med-Cab-2. Includes API calls and interaction instructions. Also includes steps to re-create API locally, including dependency installations.
 
+### Purpose
+The purpose of this API is to recommend medical cannabis strains to patients, using a Nearest Neighbors model trained on the medical effects of more than 1000 cannabis strains.
+
+This API includes a PostgreSQL database connection populated with data from the following sources:
+- Kaggle: https://www.kaggle.com/kingburrito666/cannabis-strains
+- The Strain: http://strains.evanbusse.com/index.html
+
+Strain Recommender tool receives input of medical ailments/symptoms (ex. stress, anxiety, insomnia, eye pressure) and returns a recommended cannabis strain (ex. King Cake) with it's attributes (name, flavors, rating, etc.).
+<!-- TODO: What is this repo/app about? What does it do? Who is it for? 
+
+TODO: What data does it use? Links? 
+
+TODO: What is the Strain Recommender Tool / how does it work? What do the "recommendations" tell me? -->
 ---
 
 ## Heroku App: https://med-cab-1415.herokuapp.com/
@@ -61,7 +74,7 @@ https://greensolx2.herokuapp.com/toptenflavor
         - ***Schema:*** 
         ```
         --strain        (strain name, string)
-        --id            (strain id, string)
+        --id            (strain id, int)
         --flavors       (flavors, string)
         --effects       (positive effects, string)
         --medical       (medical effects, string)
@@ -74,31 +87,33 @@ https://greensolx2.herokuapp.com/toptenflavor
         ```
 - **Routes for data grabs / queries:**
     - ***View all strains in database***
-    ```
     https://med-cab-1415.herokuapp.com/strains
+    ```py
+    # Returns strain id, name, and rating
     ```
-        - Returns strain id, name, and rating
     - ***View all data in database***
-    ```
     https://med-cab-1415.herokuapp.com/data
+    ```py
+    # Returns strain name, id, flavors, effects, medical, type, rating, flavor
     ```
-        - Returns strain name, id, flavors, effects, medical, type, rating, flavor
     - ***View top ten highest rated strains***
-    ```
     https://med-cab-1415.herokuapp.com/toptenrating
+    ``` py
+    # Returns strain names, sorted in descending order, filtered by star rating and length of "medical" description
     ```
-        - Returns strain names, sorted in descending order, filtered by star rating and length of "medical" description
     - ***View top ten "most flavorful" strains***
-    ```
     https://med-cab-1415.herokuapp.com/toptenflavor
+    ```py
+    # Returns strain names, sorted in descending order, filtered by length of "flavors" description
     ```
-        - Returns strain names, sorted in descending order, filtered by length of "flavors" description
 ---
 
 ## Resources
-- Postgres Database
+- PostgreSQL
+- ElephantSQL
 - Flask
 - Heroku  
+- scikit-learn
 
 ---
 
