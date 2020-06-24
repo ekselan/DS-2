@@ -33,7 +33,7 @@ https://greensolx2.herokuapp.com/toptenrating
 https://greensolx2.herokuapp.com/toptenflavor
 ```
 
-***Note on dual APIs:*** Both APIs provide same functionality, use same model, and can be used interchangeably. Presence of both is for development and production workflow, as well as back up API.
+*Note on dual APIs:* Both APIs provide same functionality, use same model, and can be used interchangeably. Presence of both is for development and production workflow, as well as back up API.
 ---
 
 ## Heroku API
