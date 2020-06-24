@@ -1,24 +1,5 @@
 # DS
-
-## Resources
-- Postgres Database
-- Flask
-- Heroku  
-
-## Installation Instructions for Dependencies (pipenv, Mac/Linux)
-
-- Flask, Flask-Cors, Psycopg2, Gunicorn, Requests, Dotenv
-```sh
-pipenv install Flask flask-cors psycopg2-binary gunicorn requests python-dotenv
-```
-- PostgreSQL Database Connection
-Example of format to place credentials inside a .env file:
-```py
-DB_USER="___________"
-DB_NAME="___________"
-DB_PASSWORD="___________"
-DB_HOST="___________"
-```
+Data Science repository for BW-Med-Cab-2. Includes API calls and interaction instructions. Also includes steps to re-create API locally, including dependency installations.
 
 ---
 
@@ -30,9 +11,7 @@ Windows:
 `export FLASK_APP=MedCab` (set env var)  
 `flask run`
 
-
 ---
-
 
 ## Heroku App: https://med-cab-1415.herokuapp.com/
 
@@ -136,4 +115,26 @@ heroku config:set DB_USER="___________"
 heroku config:set DB_NAME="___________"
 heroku config:set DB_PASSWORD="___________"
 heroku config:set DB_HOST="___________"
+```
+
+---
+
+## Resources
+- Postgres Database
+- Flask
+- Heroku  
+
+## Installation Instructions for Dependencies (pipenv, Mac/Linux)
+
+- Flask, Flask-Cors, Psycopg2, Gunicorn, Requests, Dotenv
+```sh
+pipenv install Flask flask-cors psycopg2-binary gunicorn requests python-dotenv
+```
+- PostgreSQL Database Connection
+Example of format to place credentials inside a .env file:
+```py
+DB_USER="___________"
+DB_NAME="___________"
+DB_PASSWORD="___________"
+DB_HOST="___________"
 ```
