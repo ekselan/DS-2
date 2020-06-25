@@ -50,7 +50,7 @@ https://greensolx2.herokuapp.com/toptenflavor
 
 ---
 
-## Heroku API
+## MedCab API
 - **Strain Recommender Tool**
     - **To get strain recommendations**, type/insert a "symptoms string" into:
         - https://med-cab-1415.herokuapp.com/model/<symptoms_string> 
@@ -117,11 +117,15 @@ https://greensolx2.herokuapp.com/toptenflavor
 
 ---
 
-## Installation Instructions for Dependencies (pipenv, Mac/Linux)
-
-- Flask, Flask-Cors, Psycopg2, Gunicorn, Requests, Dotenv
+## Installation Instructions for Dependencies
+Flask, Flask-Cors, Psycopg2, Gunicorn, Requests, Dotenv
+- pipenv
 ```sh
 pipenv install Flask flask-cors psycopg2-binary gunicorn requests python-dotenv
+```
+- conda
+```sh
+pip install Flask flask-cors psycopg2-binary gunicorn requests python-dotenv
 ```
 - PostgreSQL Database Connection
 Example of format to place credentials inside a .env file:

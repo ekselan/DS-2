@@ -7,8 +7,6 @@ import os
 from dotenv import load_dotenv
 import psycopg2
 
-
-######################### CONNECTION AND PATHS #########################
 load_dotenv()
 
 DB_NAME = os.getenv("DB_NAME")
@@ -19,12 +17,26 @@ DB_HOST = os.getenv("DB_HOST")
 # Instantiate new blueprint object
 model_routes = Blueprint("model_routes", __name__)
 
+
 # Pickled model filepath
 # MODEL_FILEPATH = "/Users/ekselan/Desktop/Med_Cab_BW/DS-2/data/medcab_model2.pkl"
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "medcab_model2_copy.pkl")
 
+
+# ### Filepath for .csv dataset
+# DATA_URL = "https://raw.githubusercontent.com/BW-Med-Cab-2/DS/master/data/BW_MedCab_Dataset_With_Index.csv"
+
+# breakpoint()
+# ### Create df for model to reference for strain info
+# df = pd.read_csv("https://raw.githubusercontent.com/BW-Med-Cab-2/DS/master/data/BW_MedCab_Dataset_With_Index.csv")
+# df = df.drop('Unnamed: 0', axis=1)
+# # print(df.shape)
+# # print(df.head())
+
 """Establish db connection instead of using csv"""
 
+# Creating connection object inside function to sustain connection
+# until session end
 connection = psycopg2.connect(
     dbname=DB_NAME,
     user=DB_USER,
@@ -55,11 +67,13 @@ df = pd.DataFrame(strains, columns=columns)
 
 # DF to dictionary
 pairs = df.to_json(orient='records')
+# print(type(pairs))
+
+# return pairs
+
+# Function to load model
 
 
-###################### FUNCTIONS ######################################
-
-### Function to load model
 def load_model():
     """Function to load pickled nearest neighbors model"""
     # print("LOADING THE MODEL...")
@@ -67,13 +81,13 @@ def load_model():
         saved_model = pickle.load(model_file)
     return saved_model
 
-### Function to generate recommendation
+# Function to generate recommendation
+
+
 def hello_pickle(nn):
     """
     Function to use pickled model to get nearest neighbor recommendation
-
-    Params:
-        nn = pickled model
+    nn = pickled model
     """
     nn = nn
 
@@ -107,15 +121,25 @@ def hello_pickle(nn):
     # Possibly grab top 5, loop them and grab their info
     return summary
 
-### Function to generate recommendation from user input
+
+@model_routes.route("/model")
+def run_model():
+
+    recommender = load_model()
+    result = hello_pickle(recommender)
+    # Turn Series into json
+    res = result[0].to_json()
+    return res
+
+
+""" Add dynamic route for model_routes"""
+
+"""Tweak hello_pickle function for use with input variable"""
 def hello_recommender(nn, x):
     """
     Function to use pickled model to get nearest neighbor recommendation
-    using an input variable as opposed to function-defined string.
-
-    Params:
-        nn = pickled model (nearest neighbors instance)
-        x = input string
+    nn = pickled model
+    x = input string
     """
     nn = nn
     x = x
@@ -147,32 +171,8 @@ def hello_recommender(nn, x):
     # Possibly grab top 5, loop them and grab their info
     return summary
 
-
-############################ ROUTES ####################################
-
-@model_routes.route("/model")
-def run_model():
-    """
-    Route function to use pickled model and generate strain 
-    recommendation.
-    """
-    recommender = load_model()
-    result = hello_pickle(recommender)
-    # Turn Series into json
-    res = result[0].to_json()
-    return res
-
 @model_routes.route("/model/<symptoms_string>")
 def make_rec(symptoms_string=None):
-    """
-    Route function to use pickled model and generate strain 
-    recommendation from dynamic input.
-
-    Params:
-        symptoms_string: input string
-
-        Ex.: 'insomnia, stress, muscle pain'
-    """
     x = symptoms_string
 
     recommender = load_model()
