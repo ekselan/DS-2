@@ -18,8 +18,9 @@ print(DB_NAME, DB_USER, DB_PASSWORD, DB_HOST)
 home_routes = Blueprint("home_routes", __name__)
 
 def fetch_strains(query):
-    # Creating connection object inside function to sustain connection
-    # until session end
+'''
+Creating connection object inside function to sustain connection until session end
+'''
     connection = psycopg2.connect(
         dbname=DB_NAME,
         user=DB_USER,
@@ -27,28 +28,29 @@ def fetch_strains(query):
         host=DB_HOST)
     cursor = connection.cursor()
 
-    # Execute query
+    '''Execute query'''
     cursor.execute(query)
-    # Query results
+    ''' Query results '''
     strains = list(cursor.fetchall())
-    # Key-value pair names for df columns
+    '''Key-value pair names for df columns '''
     columns = ["id",
                "strain",
                "rating"]
-    # List of tuples to DF
+    '''List of tuples to DF'''
     df = pd.DataFrame(strains, columns=columns)
     print(type(df))
 
-    # DF to dictionary
+    '''DF to dictionary''' 
     pairs = df.to_json(orient='records')
     print(type(pairs))
-    # Closing Connection
+    '''Closing Connection'''
     connection.close()
     return pairs
 
 def fetch_top(query):
-    # Creating connection object inside function to sustain connection
-    # until session end
+'''
+Creating connection object inside function to sustain connection until session end
+'''
     connection = psycopg2.connect(
         dbname=DB_NAME,
         user=DB_USER,
@@ -56,26 +58,27 @@ def fetch_top(query):
         host=DB_HOST)
     cursor = connection.cursor()
 
-    # Execute query
+   '''Execute query'''
     cursor.execute(query)
-    # Query results
+    ''' Query results '''
     strains = list(cursor.fetchall())
-    # Key-value pair names for df columns
+    '''Key-value pair names for df columns '''
     columns = ["strain"]
-    # List of tuples to DF
+      '''List of tuples to DF'''
     df = pd.DataFrame(strains, columns=columns)
     print(type(df))
 
-    # DF to dictionary
+    '''DF to dictionary'''
     pairs = df.to_json(orient='records')
     print(type(pairs))
-    # Closing Connection
+    '''Closing Connection'''
     connection.close()
     return pairs
 
 def fetch_data(query):
-      # Creating connection object inside function to sustain connection
-    # until session end
+      ''' 
+      Creating connection object inside function to sustain connection until session end
+      '''
     connection = psycopg2.connect(
         dbname=DB_NAME,
         user=DB_USER,
@@ -83,11 +86,11 @@ def fetch_data(query):
         host=DB_HOST)
     cursor = connection.cursor()
 
-    # Execute query
+    ''' Execute query'''
     cursor.execute(query)
-    # Query results
+    ''' Query results'''
     strains = list(cursor.fetchall())
-    # Key-value pair names for df columns
+    ''' Key-value pair names for df columns'''
     columns = ["strain", "id",
                 "flavors",
                 "effects",
@@ -95,11 +98,11 @@ def fetch_data(query):
                 "type",
                 "rating",
                 "flavor"]
-    # List of tuples to DF
+    ''' List of tuples to DF'''
     df = pd.DataFrame(strains, columns=columns)
-    # DF to dictionary
+    ''' DF to dictionary'''
     pairs = df.to_json(orient='records')
-    # Closing Connection
+    ''' Closing Connection'''
     connection.close()
     return pairs
 
